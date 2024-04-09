@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+// modelo
+
+model Conti {
+  id String @id @default(uuid())
+  nombreConti String
+  habiConti Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // PAIS DEBIL VS CONTI
+  paises Pais[]
+}
+
+model Pais {
+  id String @id @default(uuid())
+  nombrePais String
+  habiPais Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //CONTI FUERTE VS PAIS
+  contiId String
+  conti Conti @relation(fields: [contiId], references: [id])
+
+  // CIUDAD DEBIL VS PAIS
+  ciudades Ciudad[]
+}
+
+
+model Ciudad {
+  id String @id @default(uuid())
+  nombreCiudad String
+  habiCiudad Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // PAIS FUERTE VS CIUDAD
+  paisId String
+  pais Pais @relation(fields: [paisId], references: [id])
+
+}
+
