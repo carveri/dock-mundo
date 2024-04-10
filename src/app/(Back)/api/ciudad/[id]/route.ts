@@ -19,3 +19,12 @@ export const DELETE = async(req:Request, {params})=>{
         return NextResponse.json(error)
     }
 }
+
+// ruta getone
+export const GET = async(req:Request, {params})=>{
+    try {
+        return NextResponse.json(await ciudaddetalle.getOneCiudad(req, {params}))
+    } catch (error) {
+        return NextResponse.json(error)
+    }
+}

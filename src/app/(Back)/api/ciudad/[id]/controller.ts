@@ -31,6 +31,17 @@ class CiudadDetalle {
         })
         return deleteciudad
     }
+
+    // metodo getone
+    getOneCiudad = async(req:Request, {params})=>{
+        const {id} = params
+        const getoneciudad = await prisma.ciudad.findUnique({
+            where:{
+                id
+            }
+        })
+        return getoneciudad
+    }
 }
 
 export const ciudaddetalle = new CiudadDetalle()
