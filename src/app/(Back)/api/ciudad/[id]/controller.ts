@@ -1,3 +1,4 @@
+import { InterParams } from "@/app/(Back)/Schemas/params"
 import prisma from "@/libs/prisma"
 
 
@@ -5,7 +6,7 @@ import prisma from "@/libs/prisma"
 class CiudadDetalle {
 
     //metodo put
-    putOneCiudad =async(req:Request, {params})=>{
+    putOneCiudad =async(req:Request, {params}:InterParams)=>{
         const {id} = params
         const {nombreCiudad, habiCiudad, paisId} = await req.json()
         const putoneciudad = await prisma.ciudad.update({
@@ -22,7 +23,7 @@ class CiudadDetalle {
     }
 
     // metodo delete
-    deleteOneCiudad =async(req:Request, {params})=>{
+    deleteOneCiudad =async(req:Request, {params}:InterParams)=>{
         const {id} = params
         const deleteciudad = await prisma.ciudad.delete({
             where:{
@@ -33,7 +34,7 @@ class CiudadDetalle {
     }
 
     // metodo getone
-    getOneCiudad = async(req:Request, {params})=>{
+    getOneCiudad = async(req:Request, {params}:InterParams)=>{
         const {id} = params
         const getoneciudad = await prisma.ciudad.findUnique({
             where:{

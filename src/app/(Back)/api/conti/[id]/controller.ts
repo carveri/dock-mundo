@@ -1,10 +1,11 @@
+import { InterParams } from "@/app/(Back)/Schemas/params"
 import prisma from "@/libs/prisma"
 
 
 class ContiDetalle {
 
     //metodo put
-    putconti = async(req:Request, {params})=>{
+    putconti = async(req:Request, {params}:InterParams)=>{
         const {id} = params
         const {nombreConti, habiConti} = await req.json()
         const putconti = await prisma.conti.update({
@@ -20,7 +21,7 @@ class ContiDetalle {
     }
 
     // metodo delete
-    deleteconti = async(req:Request, {params})=>{
+    deleteconti = async(req:Request, {params}:InterParams)=>{
         const {id} = params
         const deleteconti = await prisma.conti.delete({
             where:{
@@ -30,7 +31,7 @@ class ContiDetalle {
         return deleteconti
     }
 
-    getContiOne = async(req:Request, {params})=>{
+    getContiOne = async(req:Request, {params}:InterParams)=>{
         const {id} = params
         const getcontione = await prisma.conti.findUnique({
             where:{
